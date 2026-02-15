@@ -47,11 +47,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Reset the entrypoint, don't invoke `uv`
-ENTRYPOINT []
+#ENTRYPOINT []
 
 # Use the non-root user to run our application
 #USER nonroot
 
 # Run main.py
 # Uses `uv run` to sync dependencies on startup, respecting UV_NO_DEV
-CMD ["uv", "run", "main.py", "runserver"]
+CMD ["uv", "run", "manage.py", "runserver"]
