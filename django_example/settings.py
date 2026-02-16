@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-$k97=d9($*nry=-cqgfrzdg-oi^-j6i498y^w8^+g1psi3h^5l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
@@ -71,13 +73,30 @@ WSGI_APPLICATION = 'django_example.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+database_url = os.environ.get("DATABASE_URL")
+if database_url:
+    parsed = urlparse(database_url)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": (parsed.path or "/").lstrip("/") or "postgres",
+            "USER": parsed.username or "postgres",
+            "PASSWORD": parsed.password or "password",
+            "HOST": parsed.hostname or "localhost",
+            "PORT": parsed.port or "5432",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "password",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
 
 
 # Password validation

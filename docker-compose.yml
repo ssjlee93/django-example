@@ -3,7 +3,7 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
@@ -19,11 +19,11 @@ services:
       - .:/app
       - /app/.venv
     working_dir: /app
-    command: sh -c "uv sync && uv run manage.py runserver"
+    command: sh -c "uv sync && uv run manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/postgres
