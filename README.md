@@ -35,12 +35,26 @@ docker compose up --build -d
 
 # Development steps 
 ```shell
+# uv setup 
 uv init
 uv add django
+# part 1
 uv run django-admin startproject <project-name> <directory>
 uv run manage.py runserver
 uv run manage.py startapp weasel_dictionary
 # add contents to views
 # create .urls.py in app
 # add the .urls.py in project.urls.py
+
+# part 2
+# install db
+# modify settings.py
+uv run manage.py migrate
+# add models
+uv run manage.py makemigrations
+# connect to db
+uv run manage.py sqlmigrations polls <migration-name>
+uv run manage.py check
+uv run manage.py migrate
+
 ```

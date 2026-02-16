@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +80,7 @@ if database_url:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": (parsed.path or "/").lstrip("/") or "postgres",
+            "NAME": (parsed.path or "/").lstrip("/") or "django",
             "USER": parsed.username or "postgres",
             "PASSWORD": parsed.password or "password",
             "HOST": parsed.hostname or "localhost",
@@ -90,7 +91,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
+            "NAME": "django",
             "USER": "postgres",
             "PASSWORD": "password",
             "HOST": "localhost",
