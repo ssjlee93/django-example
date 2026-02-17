@@ -56,5 +56,10 @@ uv run manage.py makemigrations
 uv run manage.py sqlmigrations polls <migration-name>
 uv run manage.py check
 uv run manage.py migrate
+uv run manage.py shell # for investigating Django ORM APIs
+# add more methods to models
+uv run manage.py shell
+# django admine
+uv run manage.py createsuperuser
 
 ```
