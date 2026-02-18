@@ -65,3 +65,10 @@ uv run manage.py createsuperuser
 # part 3
 ## add polls/views.py functions
 ```
+
+# STOPPING 
+After part 3 of the tutorial, I realized Django may not be what I want.  
+Since I only need REST API servers, having views and templates is not necessary.  
+With the current backend development trend, I don't think this will be helpful for the market.  
+Pausing this tutorial for now.  
+Will resume when I need Django again.  
