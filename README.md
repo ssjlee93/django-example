@@ -42,24 +42,26 @@ uv add django
 uv run django-admin startproject <project-name> <directory>
 uv run manage.py runserver
 uv run manage.py startapp weasel_dictionary
-# add contents to views
-# create .urls.py in app
-# add the .urls.py in project.urls.py
+## add contents to views
+## create .urls.py in app
+## add the .urls.py in project.urls.py
 
 # part 2
-# install db
-# modify settings.py
+## install db
+## modify settings.py
 uv run manage.py migrate
-# add models
+## add models
 uv run manage.py makemigrations
-# connect to db
+## connect to db
 uv run manage.py sqlmigrations polls <migration-name>
 uv run manage.py check
 uv run manage.py migrate
 uv run manage.py shell # for investigating Django ORM APIs
-# add more methods to models
+## add more methods to models
 uv run manage.py shell
-# django admine
+## django admin
 uv run manage.py createsuperuser
 
+# part 3
+## add polls/views.py functions
 ```
